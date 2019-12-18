@@ -1,5 +1,5 @@
 ARG TIMESCALE_VERSION="1.5.1"
-FROM bitnami/postgresql:11-debian-9 AS build
+FROM bitnami/postgresql:11.6.0 AS build
 
 USER 0
 ARG TIMESCALE_VERSION
@@ -11,7 +11,7 @@ RUN \
   ./bootstrap -DREGRESS_CHECKS=OFF -DPROJECT_INSTALL_METHOD="docker-bitnami" && \
   cd build && make install DESTDIR=/dist
 
-FROM bitnami/postgresql:11-debian-9
+FROM bitnami/postgresql:11.6.0
 USER 0
 
 # Copy to /opt/bitnami/postgresql/{lib,share}
